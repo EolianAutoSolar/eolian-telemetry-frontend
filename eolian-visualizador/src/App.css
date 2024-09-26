@@ -1,38 +1,76 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  --c1: #c12612;
+  --c2: #Db5c23;
+  --c3: #f69220;
+  --c4: #8ba247;
+  --c5: #23b473;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+
+  .speedometer {
+    width: 500px;
+    height: 500px;
+    padding: 100px;
+    border-radius: 50%;
+    background :
+    radial-gradient(#ffff 0 0) content-box,
+    conic-gradient(
+      from -90deg,
+      var(--c1) 36deg,
+      var(--c2) 0 72deg,
+      var(--c3) 0 108deg,
+      var(--c4) 0 144deg,
+      var(--c5) 0 180deg,
+      #0000 0
+    );
+    position: relative;
+
+    .needle {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      padding: 150px;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
+      border-radius: 50%;
+      background: 
+      conic-gradient(
+        from 175deg at 50% 55%,
+        #ccc 2deg,
+        #ea1c98 3deg 7deg,
+        #ccc 8deg 10deg,
+        #0000 0
+      ) 0 -217px no-repeat,
+      radial-gradient(
+        #ea1c98 0 50%,
+        #ccc 51%
+      ) content-box;
+      rotate: calc(cos(var(--score)*180deg/100)*-90deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .score {
+        rotate: calc(cos(var(--score)*180deg/100)*-90deg);
+        font-size: 18px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 800;
+        color: #eee;
+      }
+    }
+  }
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
