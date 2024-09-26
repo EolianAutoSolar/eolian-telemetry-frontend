@@ -28,11 +28,11 @@
     radial-gradient(#ffff 0 0) content-box,
     conic-gradient(
       from -90deg,
-      var(--c1) 36deg,
-      var(--c2) 0 72deg,
+      var(--c5) 36deg,
+      var(--c4) 0 72deg,
       var(--c3) 0 108deg,
-      var(--c4) 0 144deg,
-      var(--c5) 0 180deg,
+      var(--c2) 0 144deg,
+      var(--c1) 0 180deg,
       #0000 0
     );
     position: relative;
@@ -50,12 +50,12 @@
       conic-gradient(
         from 175deg at 50% 55%,
         #ccc 2deg,
-        #ea1c98 3deg 7deg,
+        #000000 3deg 7deg,
         #ccc 8deg 10deg,
         #0000 0
       ) 0 -217px no-repeat,
       radial-gradient(
-        #ea1c98 0 50%,
+        #000000 0 50%,
         #ccc 51%
       ) content-box;
       rotate: calc(cos(var(--score)*180deg/100)*-90deg);
