@@ -1,38 +1,36 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 import './App.css';
 
+const socket = io('http://localhost:8000'); // Connect to the Socket.IO server
+
 function App() {
-  const [score, setSpeed] = useState(0);
-  const handleInputChange = (event) => {
-    const newSpeed = parseInt(event.target.value, 10);
-    if (!isNaN(newSpeed) && newSpeed >= 0 && newSpeed <= 100) {
-      setSpeed(newSpeed);
-    }
-  };
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Listen for the 'update' event from the server
+    socket.on('update', (receivedData) => {
+      setData(receivedData);
+    });
+  }, []);
+
+  const rpm = data?.rpm || 0;
 
   return (
     <div className="App">
       <header className="App-header">
         <div className="speedometer">
-          <div className="needle" style={{ transform: `rotate(${(score-50)*1.8}deg)`}}>
-            <spam className="score">{score}</spam>
+          <div
+            className="needle"
+            style={{
+              transform: `rotate(${(rpm - 50) * 1.8}deg)`,
+            }}
+          >
+            <span className="score">{rpm}</span>
           </div>
         </div>
-        {/* Input para cambiar la velocidad */}
-        <input
-          type="number"
-          value={score}
-          onChange={handleInputChange}
-          min="0"
-          max="100"
-          step="1"
-          style={{ marginTop: '20px', fontSize: '18px' }}
-        />
       </header>
     </div>
-
-    
   );
 }
 
